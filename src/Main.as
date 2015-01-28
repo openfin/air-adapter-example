@@ -4,7 +4,6 @@ import fin.desktop.System;
 import fin.desktop.connection.DesktopConnection;
 
 import flash.display.Sprite;
-import flash.text.TextField;
 
 public class Main extends Sprite {
 
