@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="openfinAirAdapter" type="flex">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/openfinAirAdapter.swc!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

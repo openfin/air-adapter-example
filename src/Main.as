@@ -2,7 +2,6 @@ package {
 
 import fin.desktop.System;
 import fin.desktop.connection.DesktopConnection;
-
 import flash.display.Sprite;
 
 public class Main extends Sprite {
