@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="Flex" version="4">
+  <component name="FlexBuildConfigurationManager" active="air-adapter-example">
+    <configurations>
+      <configuration name="air-adapter-example" target-platform="Desktop" main-class="Main" output-file="air-adapter-example.swf" output-folder="$MODULE_DIR$/out/production/air-adapter-example">
+        <dependencies>
+          <entries>
+            <entry library-id="8d7471a7-6b0e-46db-a3c2-ba26cc915ced">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="184727fe-9095-464a-9cfc-b4bc6d1e6657">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="flex_sdk_4.6" />
+        </dependencies>
+        <compiler-options />
+        <packaging-air-desktop package-file-name="air-adapter-example" />
+        <packaging-android />
+        <packaging-ios />
+      </configuration>
+    </configurations>
+    <compiler-options />
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="jdk" jdkName="flex_sdk_4.6" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="8d7471a7-6b0e-46db-a3c2-ba26cc915ced" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/OpenFinAirNativeExtension-6.0.1.ane!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="184727fe-9095-464a-9cfc-b4bc6d1e6657" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/OpenFinAirAdapter-6.0.1.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>

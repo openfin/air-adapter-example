@@ -2,8 +2,8 @@ package {
 
 import fin.desktop.ExternalWindow;
 import fin.desktop.InterApplicationBus;
+import fin.desktop.RuntimeConfiguration;
 import fin.desktop.RuntimeLauncher;
-import fin.desktop.System;
 import fin.desktop.Window;
 import fin.desktop.connection.DesktopConnection;
 import flash.display.Sprite;
@@ -12,12 +12,17 @@ import flash.utils.Timer;
 
 public class Main extends Sprite {
 
-    var connection: DesktopConnection;
+    var runtimeLauncher: RuntimeLauncher;
 
     public function Main() {
 
-        connection = new DesktopConnection("inter-app-messenger", "localhost", "9696" , onConnectionReady);
-       // new RuntimeLauncher("AppData\\Local\\OpenFin\\OpenFinRVM.exe", "http://openfin.github.io/excel-api-example/app.json", onConnectionReady);
+        var cfg:RuntimeConfiguration = new RuntimeConfiguration("inter-app-messenger");
+        cfg.appManifestUrl = "http://openfin.github.io/excel-api-example/app.json";
+        cfg.onConnectionReady = onConnectionReady;
+        cfg.onConnectionError = onConnectionError;
+        cfg.onConnectionClose = onConnectionClose;
+        cfg.connectionTimeout = 15000;
+        runtimeLauncher = new RuntimeLauncher(cfg);
     }
 
     private function onConnectionReady(): void{
@@ -38,7 +43,12 @@ public class Main extends Sprite {
         InterApplicationBus.getInstance().publish("test", {value: "test"});
     }
 
-
+    private function onConnectionError(reason: String) {
+        trace("Connection failed", reason);
+    }
+    private function onConnectionClose(reason:String = null):void {
+        trace("Connection close", reason);
+    }
 
 }
 }
