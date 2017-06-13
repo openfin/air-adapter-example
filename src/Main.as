@@ -16,12 +16,15 @@ public class Main extends Sprite {
 
     public function Main() {
 
+        RuntimeConfiguration.enableTraceLogging(); // enable logging from AirAdapter to trace()
+        RuntimeConfiguration.enableFileLogging("air-adapter-example.log"); // enable file logging from AirAdapter to %LocalAppData/Openfin/logs/
         var cfg:RuntimeConfiguration = new RuntimeConfiguration("inter-app-messenger");
-        cfg.appManifestUrl = "http://openfin.github.io/excel-api-example/app.json";
+        cfg.appManifestUrl = "https://demoappdirectory.openf.in/desktop/config/apps/OpenFin/HelloOpenFin/app.json";
         cfg.onConnectionReady = onConnectionReady;
         cfg.onConnectionError = onConnectionError;
         cfg.onConnectionClose = onConnectionClose;
-        cfg.connectionTimeout = 15000;
+        cfg.connectionTimeout = 15000;  // milli-seconds
+        // cfg.runtimeInstallPath = "c:\\openfin";  // override OpenFin Runtime default install directory (%LocalAppData/Openfin)
         runtimeLauncher = new RuntimeLauncher(cfg);
     }
 
