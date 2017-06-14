@@ -13,6 +13,7 @@ import flash.utils.Timer;
 public class Main extends Sprite {
 
     var runtimeLauncher: RuntimeLauncher;
+    var runtimeLauncher2: RuntimeLauncher;
 
     public function Main() {
 
