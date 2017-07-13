@@ -22,3 +22,5 @@ bin-release/
 ### FlexBuilder template
 
 out/
+.idea/
+*.iml
