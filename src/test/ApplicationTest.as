@@ -5,8 +5,8 @@ package
 	import flash.display.Sprite;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
-	import flexunit.framework.Test;
 	
+	import flexunit.framework.Test;
 	import org.flexunit.async.Async;
 	import org.flexunit.Assert;
 	
@@ -19,7 +19,6 @@ package
 	import fin.desktop.ApplicationOptions;
 	import fin.desktop.WindowOptions;
 	import fin.desktop.connection.DesktopConnection;
-	import tests.NotificationTest;
 	
 	public class ApplicationTest 
 	{
