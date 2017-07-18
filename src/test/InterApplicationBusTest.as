@@ -23,9 +23,6 @@ package
 			
 			var testHandler:Function = function(event:Event, passThroughData:Object):void 
 			{
-				trace("myMessage=" + JSON.stringify(myMessage));
-				trace("receivedMessage=" + JSON.stringify(receivedMessage));
-				trace("passThroughData=" + passThroughData);
 				Assert.assertEquals(0, ObjectUtil.compare(receivedMessage, myMessage));
 			}
 			
@@ -43,8 +40,6 @@ package
 			});
 
 			bus.publish("unit-test", myMessage);
-			
-			
 		}
 	}
 }
