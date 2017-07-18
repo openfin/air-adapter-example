@@ -21,10 +21,10 @@ package
 	
 	public class WindowTest
 	{
-		private var app:Application;
+		private static var app:Application;
 		
-		[Before(async)]
-		public function createApplication():void
+		[BeforeClass(async)]
+		public static function createApplication():void
 		{
 			trace("WindowTest: create application");
 			var applicationOptions:ApplicationOptions = new ApplicationOptions("windowTest", "https://www.google.com");
@@ -34,6 +34,9 @@ package
 			windowOptions.autoShow = true;
 			windowOptions.showTaskbarIcon = true;
 			windowOptions.frame = true;
+			windowOptions.defaultWidth = 640;
+			windowOptions.defaultHeight = 480;
+			windowOptions.defaultCentered = true;
 			
 			var testHandler:Function = function(event:Event, passThroughData:Object):void 
 			{
@@ -44,7 +47,7 @@ package
 				Assert.fail("error creating application:" + passThroughData);
 			}
 			
-			var asyncHandler = Async.asyncHandler(this, testHandler, 15000, null, testErrorHandler)
+			var asyncHandler = Async.asyncHandler(WindowTest, testHandler, 15000, null, testErrorHandler)
 			
 			var handler:Function = function():void 
 			{
@@ -66,26 +69,77 @@ package
 		[Test(async)]
 		public function moveWindow():void 
 		{
-			app.window.moveTo(100, 100, Async.asyncHandler(this, 
+			var pObj:Object = new Object();
+			var toTop = 100;
+			var toLeft = 200;
+			
+			var asyncHandler = Async.asyncHandler(this, 
 					function(event:Event, passThroughData:Object):void 
 					{
-						trace("window moveTo call succeed");
 						//verify window location.
+						Assert.assertEquals(passThroughData.bounds.left, toLeft);
+						Assert.assertEquals(passThroughData.bounds.top, toTop);
 					}, 
 					15000, 
-					null, 
+					pObj, 
 					function(passThroughData:Object):void 
 					{
 						Assert.fail("error moving window");
-					}));
+					})
+					
+			app.window.moveTo(toLeft, toTop, function ():void 
+			{
+				//moveTo callback, verify window  location
+				app.window.getBounds(function(bounds:Object):void 
+				{
+					trace("window moveTo call succeed");
+					pObj.bounds = bounds;
+					asyncHandler();
+				});
+				
+			});
+		}
+		
+		[Test(async)]
+		public function resizeWindow():void 
+		{
+			var pObj:Object = new Object();
+			var toWidth = 800;
+			var toHeight = 600;
+			
+			var asyncHandler = Async.asyncHandler(this, 
+					function(event:Event, passThroughData:Object):void 
+					{
+						//verify window location.
+						Assert.assertEquals(passThroughData.bounds.width, toWidth);
+						Assert.assertEquals(passThroughData.bounds.height, toHeight);
+					}, 
+					15000, 
+					pObj, 
+					function(passThroughData:Object):void 
+					{
+						Assert.fail("error moving window");
+					})
+					
+			app.window.resizeTo(toWidth, toHeight, "top-left", function ():void 
+			{
+				//moveTo callback, verify window  location
+				app.window.getBounds(function(bounds:Object):void 
+				{
+					trace("window resizeTo call succeed");
+					pObj.bounds = bounds;
+					asyncHandler();
+				});
+				
+			});
 		}
 		
 		
-		[After(async)]
-		public function closeApplication():void
+		[AfterClass(async)]
+		public static function closeApplication():void
 		{
 			app.close(false, 
-				Async.asyncHandler(this, 
+				Async.asyncHandler(WindowTest, 
 					function(event:Event, passThroughData:Object):void 
 					{
 						
