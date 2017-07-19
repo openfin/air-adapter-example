@@ -10,6 +10,7 @@ package
 	import org.flexunit.Assert;
 	import org.flexunit.runner.FlexUnitCore;
 	import org.flexunit.internals.TraceListener;
+	import org.flexunit.listeners.CIListener;
 	
 	import fin.desktop.ExternalWindow;
 	import fin.desktop.InterApplicationBus;
@@ -33,6 +34,7 @@ package
 			var cfg:RuntimeConfiguration = new RuntimeConfiguration("inter-app-messenger");
 			cfg.appManifestUrl = "https://demoappdirectory.openf.in/desktop/config/apps/OpenFin/HelloOpenFin/app.json";
 			
+			
 			var eventHandler:Function = function():void
 			{
 				trace("runtime connection ready");
@@ -40,7 +42,8 @@ package
 				var core : FlexUnitCore = new FlexUnitCore();
 				
 				core.addListener( new TraceListener() );
-
+				core.addListener(new CIListener());
+				
 				core.run(ApplicationTest, WindowTest, InterApplicationBusTest);
 			}
 			

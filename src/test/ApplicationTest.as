@@ -43,7 +43,7 @@ package
 				Assert.fail("error creating application:" + passThroughData);
 			}
 			
-			var asyncHandler = Async.asyncHandler(this, testHandler, 15000, null, testErrorHandler)
+			var asyncHandler:Function = Async.asyncHandler(this, testHandler, 15000, null, testErrorHandler)
 			
 			var handler:Function = function():void 
 			{

@@ -14,12 +14,12 @@ package
 		private var bus:InterApplicationBus;
 		
 		[Test(async)]
-		public function publishMessage()
+		public function publishMessage():void
 		{
 			bus = InterApplicationBus.getInstance();
 			
-			var receivedMessage = null;
-			var myMessage = {"baz": false, "foo": 0};
+			var receivedMessage:Object = null;
+			var myMessage:Object = {"baz": false, "foo": 0};
 			
 			var testHandler:Function = function(event:Event, passThroughData:Object):void 
 			{
@@ -31,7 +31,7 @@ package
 				Assert.fail("error publishing message:" + passThroughData);
 			}
 
-			var asyncHandler = Async.asyncHandler(this, testHandler, 15000, null, testErrorHandler)
+			var asyncHandler:Function = Async.asyncHandler(this, testHandler, 15000, null, testErrorHandler)
 			
 			bus.subscribe("*", "unit-test", function(message:Object, uuid: String):void 
 			{

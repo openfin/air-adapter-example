@@ -1,5 +1,6 @@
 package
 {
+	import com.hurlant.util.der.Integer;
 	import flash.events.Event;
 	import flash.display.Sprite;
 	import flash.events.TimerEvent;
@@ -47,7 +48,7 @@ package
 				Assert.fail("error creating application:" + passThroughData);
 			}
 			
-			var asyncHandler = Async.asyncHandler(WindowTest, testHandler, 15000, null, testErrorHandler)
+			var asyncHandler:Function = Async.asyncHandler(WindowTest, testHandler, 15000, null, testErrorHandler)
 			
 			var handler:Function = function():void 
 			{
@@ -70,10 +71,10 @@ package
 		public function moveWindow():void 
 		{
 			var pObj:Object = new Object();
-			var toTop = 100;
-			var toLeft = 200;
+			var toTop:int = 100;
+			var toLeft:int = 200;
 			
-			var asyncHandler = Async.asyncHandler(this, 
+			var asyncHandler:Function = Async.asyncHandler(this, 
 					function(event:Event, passThroughData:Object):void 
 					{
 						//verify window location.
@@ -104,10 +105,10 @@ package
 		public function resizeWindow():void 
 		{
 			var pObj:Object = new Object();
-			var toWidth = 800;
-			var toHeight = 600;
+			var toWidth:int = 800;
+			var toHeight:int = 600;
 			
-			var asyncHandler = Async.asyncHandler(this, 
+			var asyncHandler:Function = Async.asyncHandler(this, 
 					function(event:Event, passThroughData:Object):void 
 					{
 						//verify window location.
