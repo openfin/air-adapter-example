@@ -20,13 +20,32 @@ public class Main extends Sprite {
         RuntimeConfiguration.enableTraceLogging(); // enable logging from AirAdapter to trace()
         RuntimeConfiguration.enableFileLogging("air-adapter-example.log"); // enable file logging from AirAdapter to %LocalAppData/Openfin/logs/
         var cfg:RuntimeConfiguration = new RuntimeConfiguration("inter-app-messenger");
-        cfg.appManifestUrl = "https://demoappdirectory.openf.in/desktop/config/apps/OpenFin/HelloOpenFin/app.json";
+        //cfg.appManifestUrl = "https://demoappdirectory.openf.in/desktop/config/apps/OpenFin/HelloOpenFin/app.json";
         cfg.onConnectionReady = onConnectionReady;
         cfg.onConnectionError = onConnectionError;
         cfg.onConnectionClose = onConnectionClose;
         cfg.connectionTimeout = 15000;  // milli-seconds
-        // cfg.runtimeInstallPath = "c:\\openfin";  // override OpenFin Runtime default install directory (%LocalAppData/Openfin)
-        runtimeLauncher = new RuntimeLauncher(cfg);
+		
+		var startupApp:Object = new Object();
+		startupApp.name = "Hello OpenFin";
+		startupApp.url = "http://demoappdirectory.openf.in/desktop/config/apps/OpenFin/HelloOpenFin/index.html";
+        startupApp.uuid = "OpenFinHelloWorld",
+        startupApp.applicationIcon = "http://demoappdirectory.openf.in/desktop/config/apps/OpenFin/HelloOpenFin/img/openfin.ico",
+		startupApp.autoShow = false,
+        startupApp.defaultHeight = 525,
+        startupApp.defaultWidth = 395,
+        startupApp.maxWidth = 395,
+        startupApp.maxHeight = 525,
+        startupApp.defaultTop = 50,
+        startupApp.defaultLeft = 10,
+        startupApp.resizable = false,
+        startupApp.maximizable = false,
+        startupApp.frame = false,
+		cfg.startupApp = startupApp;
+		//cfg.showInstallerUI = false;
+		cfg.runtimeVersion = "5.44.7.17";
+		
+		runtimeLauncher = new RuntimeLauncher(cfg);
     }
 
     private function onConnectionReady(): void{
