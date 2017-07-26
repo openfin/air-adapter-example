@@ -1,7 +1,7 @@
 /**
  * Created by haseebriaz on 22/01/2015.
  */
-package
+package test
 {
 	
 	import org.flexunit.async.Async;

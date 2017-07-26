@@ -1,8 +1,7 @@
-package
+package test
 {
 	import flash.events.Event;
-	import mx.utils.ObjectUtil;
-	
+
 	
 	import org.flexunit.async.Async;
 	import org.flexunit.Assert;
@@ -23,7 +22,7 @@ package
 			
 			var testHandler:Function = function(event:Event, passThroughData:Object):void 
 			{
-				Assert.assertEquals(0, ObjectUtil.compare(receivedMessage, myMessage));
+				Assert.assertEquals(true, receivedMessage.baz === myMessage.baz);
 			}
 			
 			var testErrorHandler:Function = function(passThroughData:Object):void 

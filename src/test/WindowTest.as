@@ -1,4 +1,4 @@
-package
+package test
 {
 	import com.hurlant.util.der.Integer;
 	import flash.events.Event;

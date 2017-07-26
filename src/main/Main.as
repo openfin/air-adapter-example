@@ -1,4 +1,4 @@
-package {
+package main {
 
 import fin.desktop.ExternalWindow;
 import fin.desktop.InterApplicationBus;
