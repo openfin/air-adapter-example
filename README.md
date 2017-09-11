@@ -30,6 +30,10 @@ The example requires lib/OpenFinAirAdapter-6.0.1.swc and lib/OpenFinAirNativeExt
     onConnectionReady is called when Air adapter is successfully connected to Runtime
 
 
+## API Documentation
+
+The latest API doc is available [here](https://developer.openfin.co/docs/air/6.0.1/)
+
 ## Getting help
 
 Please contact support@openfin.co
