@@ -43,8 +43,8 @@ public class Main extends Sprite {
         startupApp.frame = false,
 		cfg.startupApp = startupApp;
 		//cfg.showInstallerUI = false;
-		cfg.runtimeVersion = "5.44.7.17";
-		
+		cfg.runtimeVersion = "8.56.24.39";
+
 		runtimeLauncher = new RuntimeLauncher(cfg);
     }
 
