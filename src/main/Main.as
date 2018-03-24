@@ -6,6 +6,9 @@ import fin.desktop.RuntimeConfiguration;
 import fin.desktop.RuntimeLauncher;
 import fin.desktop.Window;
 import fin.desktop.connection.DesktopConnection;
+import fin.desktop.logging.ILogger;
+import fin.desktop.logging.LogEvent;
+
 import flash.display.Sprite;
 import flash.events.TimerEvent;
 import flash.utils.Timer;
@@ -13,12 +16,13 @@ import flash.utils.Timer;
 public class Main extends Sprite {
 
     var runtimeLauncher: RuntimeLauncher;
-    var runtimeLauncher2: RuntimeLauncher;
+    var logger: ILogger;
 
     public function Main() {
 
+        logger = RuntimeConfiguration.getLogger("air-example");
         RuntimeConfiguration.enableTraceLogging(); // enable logging from AirAdapter to trace()
-        RuntimeConfiguration.enableFileLogging("air-adapter-example.log"); // enable file logging from AirAdapter to %LocalAppData/Openfin/logs/
+        RuntimeConfiguration.enableFileLogging("c:\\AirLogs\\air-adapter-example.log", LogEvent.DEBUG); // enable file logging
         var cfg:RuntimeConfiguration = new RuntimeConfiguration("inter-app-messenger");
         //cfg.appManifestUrl = "https://demoappdirectory.openf.in/desktop/config/apps/OpenFin/HelloOpenFin/app.json";
         cfg.onConnectionReady = onConnectionReady;
@@ -50,7 +54,7 @@ public class Main extends Sprite {
 
     private function onConnectionReady(): void{
 
-        trace("Connection Successful!");
+        logger.info("Connection Successful!");
         var timer: Timer = new Timer(1000);
         timer.addEventListener(TimerEvent.TIMER, onTimer);
         timer.start();
@@ -67,10 +71,10 @@ public class Main extends Sprite {
     }
 
     private function onConnectionError(reason: String) {
-        trace("Connection failed", reason);
+        logger.info("Connection failed", reason);
     }
     private function onConnectionClose(reason:String = null):void {
-        trace("Connection close", reason);
+        logger.info("Connection close", reason);
     }
 
 }
